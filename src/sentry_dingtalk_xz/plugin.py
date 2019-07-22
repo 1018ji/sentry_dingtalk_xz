@@ -21,8 +21,8 @@ class DingTalkPlugin(NotificationPlugin):
     ]
     version = sentry_dingtalk_xz.VERSION
 
-    slug = 'Ding Talk: robot'
-    title = 'Ding Talk: robot'
+    slug = 'Ding Talk: Robot'
+    title = 'Ding Talk: Robot'
     conf_key = slug
     conf_title = title
     project_conf_form = DingTalkOptionsForm
