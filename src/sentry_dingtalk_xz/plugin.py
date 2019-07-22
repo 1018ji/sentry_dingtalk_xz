@@ -3,6 +3,7 @@
 
 import json
 import requests
+import sentry_dingtalk_xz
 from .forms import DingTalkOptionsForm
 from sentry.plugins.bases.notify import NotificationPlugin
 
@@ -18,9 +19,10 @@ class DingTalkPlugin(NotificationPlugin):
         ('Bug Tracker', 'https://github.com/1018ji/sentry_dingtalk_xz/issues'),
         ('README', 'https://github.com/1018ji/sentry_dingtalk_xz/blob/master/README.md'),
     ]
+    version = sentry_dingtalk_xz.VERSION
 
-    slug = u'钉钉机器人'
-    title = u'钉钉机器人'
+    slug = 'Ding Talk: robot'
+    title = 'Ding Talk: robot'
     conf_key = slug
     conf_title = title
     project_conf_form = DingTalkOptionsForm
@@ -43,13 +45,13 @@ class DingTalkPlugin(NotificationPlugin):
     def send_msg(self, group, event, *args, **kwargs):
         del args, kwargs
 
-        error_title = u'警告 存在来自【%s】的异常' % event.project.slug
+        error_title = u'【WARNING】捕获到来自【%s】的异常' % event.project.slug
 
         data = {
             "msgtype": 'markdown',
             "markdown": {
                 "title": error_title,
-                "text": u'#### {title} \n\n > {message} \n\n [详细信息]({url})'.format(
+                "text": u'#### {title} \n\n > {message} \n\n [更多详细信息]({url})'.format(
                     title=error_title,
                     message=event.message,
                     url=u'{url}events/{id}/'.format(

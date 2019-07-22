@@ -7,5 +7,5 @@ from django import forms
 class DingTalkOptionsForm(forms.Form):
     access_token = forms.CharField(
         max_length=255,
-        help_text=u'钉钉机器人 webhook 的 access_token'
+        help_text='DING TALK WEBHOOK ACCESS_TOKEN'
     )
