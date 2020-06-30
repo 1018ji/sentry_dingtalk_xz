@@ -56,7 +56,7 @@ class DingTalkPlugin(NotificationPlugin):
                     message=event.message,
                     url=u'{url}events/{id}/'.format(
                         url=group.get_absolute_url(),
-                        id=event.id
+                        id=event.event_id if hasattr(event, 'event_id') else event.id
                     ),
                 )
             }
